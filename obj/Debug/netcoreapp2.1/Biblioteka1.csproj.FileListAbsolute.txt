@@ -1,0 +1,76 @@
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.deps.json
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.runtimeconfig.json
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.runtimeconfig.dev.json
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.dll
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.pdb
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.Views.dll
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.Views.pdb
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.csprojAssemblyReference.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.csproj.CoreCompileInputs.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorAssemblyInfo.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorAssemblyInfo.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.AssemblyInfoInputs.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.AssemblyInfo.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.TagHelpers.input.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.TagHelpers.output.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorCoreGenerate.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Details.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\CheckIn.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\CheckOut.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Create.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Delete.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Details.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Edit.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Index.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_List.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Statistics\Index.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorTargetAssemblyInfo.cache
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorTargetAssemblyInfo.cs
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.Views.pdb
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.dll
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.pdb
+C:\Users\TED\Desktop\home-library-master\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.csproj.CopyComplete
+Z:\source\repos\home-library-master (1)\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.deps.json
+Z:\source\repos\home-library-master (1)\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.runtimeconfig.json
+Z:\source\repos\home-library-master (1)\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.runtimeconfig.dev.json
+Z:\source\repos\home-library-master (1)\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.dll
+Z:\source\repos\home-library-master (1)\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.pdb
+Z:\source\repos\home-library-master (1)\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.Views.dll
+Z:\source\repos\home-library-master (1)\Biblioteka1\bin\Debug\netcoreapp2.1\Biblioteka1.Views.pdb
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.csprojAssemblyReference.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.csproj.CoreCompileInputs.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorAssemblyInfo.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorAssemblyInfo.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.AssemblyInfoInputs.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.AssemblyInfo.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.TagHelpers.input.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.TagHelpers.output.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorCoreGenerate.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Account\Register.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Details.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\CheckIn.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\CheckOut.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Create.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Delete.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Details.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Edit.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Item\Index.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_List.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\Statistics\Index.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorTargetAssemblyInfo.cache
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.RazorTargetAssemblyInfo.cs
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.Views.pdb
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.dll
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.pdb
+Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.csproj.CopyComplete

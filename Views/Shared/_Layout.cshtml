@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/content/site.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Item" asp-action="Create">Add Item</a></li>
+                </ul>
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+                          method="post" class="navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+                        </ul>
+                    </form>
+
+                    <ul class="nav navbar-nav">
+                        <li><a asp-controller="Statistics" asp-action="Index" >Statistics</a></li>
+                    </ul>
+
+
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li><a id="registerLink" asp-controller="Account" asp-action="Register">Registration</a></li>
+                        <li><a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a></li>
+                    </ul>
+                }
+
+
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2018 - LibraryProject</p>
+        </footer>
+    </div>
+
+
+
+
+</body>
+</html>

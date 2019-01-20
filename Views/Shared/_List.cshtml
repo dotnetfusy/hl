@@ -1,0 +1,146 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model ListVM
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@*<form asp-action="Index" asp-controller="Item" method="post" class="form-horizontal" role="form">*@
+
+
+
+    <form asp-action="Index" method="post" class="form-horizontal" role="form">
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Title</label>
+            <div class="col-md-6">
+                <input asp-for="SearchTitle" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Author</label>
+            <div class="col-md-6">
+                <input asp-for="SearchAuthor" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Format</label>
+            <div class="col-md-3">
+                <select asp-for="SearchFormat" class="form-control">
+                    <option value="">All</option>
+                    <option value="Book">Book</option>
+                    <option value="CD">CD</option>
+                    <option value="DVD">DVD</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-primary" value="Search" />
+            </div>
+        </div>
+    </form>
+
+    <table class="table" style="background-color:azure">
+        <thead>
+            <tr>
+                <th scope="col">Cover</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Format</th>
+                <th scope="col">Year</th>
+                <th scope="col">Checked out</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LibraryItems)
+            {
+            <tr>
+                <td><img class="img-thumbnail"  height="100" width="100" src="@item.CoverString" /></td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                <td>@Html.DisplayFor(modelItem => item.Format)</td>
+                <td>@Html.DisplayFor(modelItem => item.Year)</td>
+                <td>@Html.DisplayFor(modelItem => item.CheckedOut)</td>
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <td>
+                        <a asp-controller="Item" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-sm" style="margin-bottom:3px">Details</a>
+                        <a asp-controller="Item" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm" style="margin-bottom:3px">Edit</a>
+                        <a asp-controller="Item" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-success btn-sm" style="margin-bottom:3px">Delete</a>
+                        @if (item.CheckedOut == false)
+                        {
+                            <a asp-controller="Item" asp-action="CheckOut" asp-route-id="@item.Id" class="btn btn-success btn-sm" style="margin-bottom:3px">Check out</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Item" asp-action="CheckIn" asp-route-id="@item.Id" class="btn btn-success btn-sm" style="margin-bottom:3px">Check in</a>
+                        }
+                    </td>
+                }
+            </tr>
+
+
+            }
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+
+            @if (@Model.PagingInfo.CurrentPage > 1)
+            {
+                <li>
+                    <a asp-route-page="@(Model.PagingInfo.CurrentPage - 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+
+            else
+            {
+                <li>
+                    <a asp-route-page="@(Model.PagingInfo.CurrentPage)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+            }
+
+
+
+
+
+
+
+            @for (int i = 1; i <= Model.PagingInfo.TotalPages; i++)
+            {
+
+                <li><a asp-route-page="@i">@i</a></li>
+            }
+
+            @if (@Model.PagingInfo.CurrentPage < Model.PagingInfo.TotalPages)
+            {
+                <li>
+                    <a asp-route-page="@(Model.PagingInfo.CurrentPage + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a asp-route-page="@(Model.PagingInfo.CurrentPage)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+
+            }
+
+
+
+        </ul>
+    </nav>
+

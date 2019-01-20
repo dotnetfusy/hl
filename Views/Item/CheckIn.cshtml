@@ -1,0 +1,63 @@
+﻿@model LibraryItem
+<h2>Item check in</h2>
+<hr />
+<div class="row">
+    <form asp-action="CheckIn">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" readonly />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" readonly/>
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Format" class="control-label">Format</label>
+                <input asp-for="Format" class="form-control" readonly />
+                <span asp-validation-for="Format" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" readonly />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CheckedOut" class="control-label">Checked out</label>
+                <input asp-for="CheckedOut" class="form-control" readonly/>
+                <span asp-validation-for="CheckedOut" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CheckedOutTo" class="control-label">Checked out to</label>
+                <input asp-for="CheckedOutTo" class="form-control" readonly />
+                <span asp-validation-for="CheckedOutTo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CheckedOutBy" class="control-label">Checked out by</label>
+                <input asp-for="CheckedOutBy" class="form-control" readonly/>
+                <span asp-validation-for="CheckedOutBy" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CheckedOutDate" class="control-label">Checked out date</label>
+                <input asp-for="CheckedOutDate" class="form-control" readonly />
+                <span asp-validation-for="CheckedOutDate" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Check In item" class="btn btn-success" style="margin-top:30px" />
+                <a asp-action="Index" class="btn btn-danger pull-right" style="margin-top:30px">Return</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+
