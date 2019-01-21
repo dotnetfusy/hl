@@ -74,5 +74,4 @@ Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Bibl
 Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.dll
 Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.pdb
 Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Biblioteka1.csproj.CopyComplete
-Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\CoverRecognition\CoverRecognition.g.cshtml.cs
 Z:\source\repos\home-library-master (1)\Biblioteka1\obj\Debug\netcoreapp2.1\Razor\Views\CoverRecognition\Index.g.cshtml.cs

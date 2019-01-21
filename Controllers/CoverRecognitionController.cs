@@ -9,6 +9,7 @@ using System.Web;
 using System.Threading;
 using System.Text;
 using Biblioteka1.Models;
+using Biblioteka1.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
@@ -17,34 +18,33 @@ namespace Biblioteka1.Controllers
 {
     public class CoverRecognitionController : Controller
     {
-        List<string> result = new List<string>(); 
-        string ImagePath;
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-       
         private IHostingEnvironment _environment;
+        private List<string> result = new List<string>(); 
+        private string ImagePath;
 
         public CoverRecognitionController(IHostingEnvironment environment)
         {
             _environment = environment;
         }
 
-        
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Index(ICollection<IFormFile> files)
         {
-            var uploads = Path.Combine(_environment.WebRootPath, "uploads");
-            IFormFile xfile = HttpContext.Request.Form.Files.FirstOrDefault();
+            CoverRecognitionVM coverVM = new CoverRecognitionVM();
+            string uploads = Path.Combine(_environment.WebRootPath, "uploads");
 
             foreach (var file in files)
             {
                 if (file.Length > 0)
                 {                    
-                    ImagePath = Path.Combine(uploads, xfile.FileName);
+                    ImagePath = Path.Combine(uploads, file.FileName);
                     using (var fileStream = new FileStream(ImagePath, FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);
@@ -52,19 +52,13 @@ namespace Biblioteka1.Controllers
                 }
             }
 
-            MakeRequest().GetAwaiter().GetResult(); 
-            ViewBag.Resoult = result; 
+            MakeRequest().GetAwaiter().GetResult();
+            coverVM.CoverRecognitionResult = result.ToList();
 
-            return View();
-        }
-        
-        public IActionResult CoverRecognition()
-        {            
-            return View();
-        }
-             
+            return View(coverVM);
+        }      
                 
-         async Task MakeRequest() 
+        private async Task MakeRequest() 
         {
             
             var client = new HttpClient();
@@ -110,8 +104,7 @@ namespace Biblioteka1.Controllers
                     
                     foreach (Line _line in @object.RecognitionResult.Lines)
                     {
-                        foreach (Word _word in _line.Words)
-                        { result.Add(_word.Text); }                        
+                        result.Add(_line.Text);                 
                     }                                     
                     
                 }                
