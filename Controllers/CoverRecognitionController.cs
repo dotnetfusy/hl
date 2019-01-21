@@ -8,16 +8,16 @@ using System.Net.Http;
 using System.Web;
 using System.Threading;
 using System.Text;
-using HomeLibrary.WebApp.Models;
+using Biblioteka1.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 
-namespace HomeLibrary.WebApp.Controllers
+namespace Biblioteka1.Controllers
 {
-    public class FindMyCoverController : Controller
+    public class CoverRecognitionController : Controller
     {
-        List<string> resoult = new List<string>(); 
+        List<string> result = new List<string>(); 
         string ImagePath;
 
         public IActionResult Index()
@@ -28,7 +28,7 @@ namespace HomeLibrary.WebApp.Controllers
        
         private IHostingEnvironment _environment;
 
-        public FindMyCoverController(IHostingEnvironment environment)
+        public CoverRecognitionController(IHostingEnvironment environment)
         {
             _environment = environment;
         }
@@ -38,12 +38,13 @@ namespace HomeLibrary.WebApp.Controllers
         public async Task<IActionResult> Index(ICollection<IFormFile> files)
         {
             var uploads = Path.Combine(_environment.WebRootPath, "uploads");
-            
+            IFormFile xfile = HttpContext.Request.Form.Files.FirstOrDefault();
+
             foreach (var file in files)
             {
                 if (file.Length > 0)
                 {                    
-                    ImagePath = Path.Combine(uploads, "tempImageFile.jpg");
+                    ImagePath = Path.Combine(uploads, xfile.FileName);
                     using (var fileStream = new FileStream(ImagePath, FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);
@@ -52,12 +53,12 @@ namespace HomeLibrary.WebApp.Controllers
             }
 
             MakeRequest().GetAwaiter().GetResult(); 
-            ViewBag.Resoult = resoult; 
+            ViewBag.Resoult = result; 
 
             return View();
         }
         
-        public IActionResult FindMyCover()
+        public IActionResult CoverRecognition()
         {            
             return View();
         }
@@ -107,10 +108,10 @@ namespace HomeLibrary.WebApp.Controllers
                     while (responseContent == "{\"status\":\"Running\"}");                    
                     Rootobject @object = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(responseContent);
                     
-                    foreach (Line _line in @object.recognitionResult.lines)
+                    foreach (Line _line in @object.RecognitionResult.Lines)
                     {
-                        foreach (Word _word in _line.words)
-                        { resoult.Add(_word.text); }                        
+                        foreach (Word _word in _line.Words)
+                        { result.Add(_word.Text); }                        
                     }                                     
                     
                 }                

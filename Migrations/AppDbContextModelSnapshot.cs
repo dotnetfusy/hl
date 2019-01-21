@@ -19,6 +19,16 @@ namespace Biblioteka1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Biblioteka1.Models.CoverRecognition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CoverRecognitions");
+                });
+
             modelBuilder.Entity("Biblioteka1.Models.LibraryItem", b =>
                 {
                     b.Property<int>("Id")
