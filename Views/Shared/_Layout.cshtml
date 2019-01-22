@@ -23,15 +23,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Item" asp-action="Create">Add Item</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">DASHBOARD</a></li>
                 </ul>
 
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <ul class="nav navbar-nav">
-                        <li><a asp-controller="Statistics" asp-action="Index">Statistics</a></li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Item" asp-action="Create">ADD ITEM</a></li>
+                    <li><a asp-controller="Statistics" asp-action="Index">STATISTICS</a></li>
+                </ul>
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
@@ -65,12 +65,12 @@
 
 
 
-    <div class="container body-content"  style="padding: 50px;">
+    <div class="container body-content"  style="padding: 60px;">
         <div class="row">
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; 2018 - LibraryProject</p>
+                <p style="width:auto; margin: auto;">&copy; 2018 - LibraryProject</p>
             </footer>
         </div>
     </div>
