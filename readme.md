@@ -5,5 +5,6 @@ Przedmiot: 'Aplikacje internetowe .NET'
 
 ------------------------------
 Aplikacja do działania wymaga:
+* .NET Core 2.1
 * AzureStorageEmulator
 * IIS Express
