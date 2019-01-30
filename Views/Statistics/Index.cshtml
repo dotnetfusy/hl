@@ -1,46 +1,44 @@
 ﻿@model StatisticsVM
 
-<h2>Library statistics</h2>
-<ul>
-    <li>Total items: @Model.TotalItems</li>
-    <li>Total books: @Model.TotalBook</li>
-    <li>Total CD: @Model.TotalCD</li>
-    <li>Total DVD: @Model.TotalDVD</li>
-    <li>Total checked in: @Model.TotalCheckedIn</li>
-    <li>Total checked out: @Model.TotalCheckedOut</li>
-</ul>
+<h2>Statistics</h2>
+<hr />
+<div class="container" style="padding-bottom: 20px;">
+    <ul>
+        <li><b>Total items: @Model.TotalItems</b> (Books: @Model.TotalBook, CD: @Model.TotalCD, DVD: @Model.TotalDVD)</li>
+    </ul>
+<br/>
+    <ul>
+        <li>Total checked in: @Model.TotalCheckedIn</li>
+        <li>Total checked out: @Model.TotalCheckedOut</li>
+    </ul>
+</div>
+<div class="well">
+    <b>List of checked out items:</b>
+    <table class="table" style="background-color:azure">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Format</th>
+                <th scope="col">Year</th>
+                <th scope="col">Checked out by</th>
+                <th scope="col">Checked out date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CheckedOutItems)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Format)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Year)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CheckedOutBy)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CheckedOutDate)</td>
 
-<br><br>
-<div>List of checked out items</div>
-
-<table class="table" style="background-color:azure">
-    <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-            <th scope="col">Format</th>
-            <th scope="col">Year</th>
-            <th scope="col">Checked out by</th>
-            <th scope="col">Checked out date</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.CheckedOutItems)
-        {
-        <tr>
-            <td>@Html.DisplayFor(modelItem => item.Title)</td>
-            <td>@Html.DisplayFor(modelItem => item.Author)</td>
-            <td>@Html.DisplayFor(modelItem => item.Format)</td>
-            <td>@Html.DisplayFor(modelItem => item.Year)</td>
-            <td>@Html.DisplayFor(modelItem => item.CheckedOutBy)</td>
-            <td>@Html.DisplayFor(modelItem => item.CheckedOutDate)</td>
-
-
-
-        </tr>
-        }
-    </tbody>
-</table>
-
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 

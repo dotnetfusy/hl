@@ -1,0 +1,28 @@
+﻿@{
+
+    ViewBag.Title = "Index";
+}
+<form method="post" asp-controller="Item" asp-action="CoverRecognition" enctype="multipart/form-data">
+    <div class="col text-center style="padding-top:5px;">
+        <label class="btn btn-info btn-file">
+            Use Cognitive Services... <input type="file" name="files" accept="image/jpeg" style="display: none;" onchange="this.form.submit()" />
+        </label>
+
+    </div>
+</form>
+
+<div class="t" style="padding: 5px;">
+    @{
+        if (@ViewBag.Result != null)
+        {
+            <h1>Maybe this words helps you fill the form:</h1>
+            foreach (string st in ViewBag.Result)
+            {
+                <p>
+                    @st
+                </p>
+            }
+        }
+
+    }
+</div>

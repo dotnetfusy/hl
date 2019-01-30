@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\upload\**" />
+    <Content Remove="wwwroot\upload\**" />
+    <EmbeddedResource Remove="wwwroot\upload\**" />
+    <None Remove="wwwroot\upload\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.1.1" />
@@ -32,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\upload\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

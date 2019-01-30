@@ -53,16 +53,16 @@ namespace Biblioteka1.Controllers
         // GET: /<controller>/
         public IActionResult Register()
         {
-            return View(new LoginVM());
+            return View(new RegisterVM());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(LoginVM loginVM)
+        public async Task<IActionResult> Register(RegisterVM registerVM)
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser() { UserName = loginVM.UserName };
-                var result = await _userManager.CreateAsync(user, loginVM.Password);
+                var user = new IdentityUser() { UserName = registerVM.UserName };
+                var result = await _userManager.CreateAsync(user, registerVM.Password);
 
                 if (result.Succeeded)
                 {
@@ -70,7 +70,7 @@ namespace Biblioteka1.Controllers
                 }
             }
 
-            return View(loginVM);
+            return View(registerVM);
         }
 
         [HttpPost]

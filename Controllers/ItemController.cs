@@ -7,17 +7,17 @@ using Biblioteka1.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using System.Web;
+using System.Threading;
 
-using System.Diagnostics;
-
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Biblioteka1.Controllers
 {
@@ -27,6 +27,10 @@ namespace Biblioteka1.Controllers
         private readonly ILibraryRepository _libraryRepository;
         private IHostingEnvironment _env;
         private IConfiguration _configuration;
+        private string ImagePath;
+
+        List<string> result = new List<string>();
+
 
         public int PageSize = 5;
 
@@ -37,8 +41,38 @@ namespace Biblioteka1.Controllers
             _configuration = Configuration;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CoverRecognition(ICollection<IFormFile> files)
+        {
+            var uploads = Path.Combine(_env.WebRootPath, "uploads");
+            IFormFile xfile = HttpContext.Request.Form.Files.FirstOrDefault();
+
+            foreach (var file in files)
+            {
+                if (file.Length > 0)
+                {
+                    ImagePath = Path.Combine(uploads, xfile.FileName);
+                    using (var fileStream = new FileStream(ImagePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                }
+            }
+
+            MakeRequest().GetAwaiter().GetResult();
+            ViewBag.Result = result;
+
+            return View("Create");
+            // return PartialView("CoverRecognition");
+        }
+
+        public IActionResult CoverRecognition()
+        {
+            return PartialView("CoverRecognition");
+        }
+
         // GET: /<controller>/
-        public IActionResult Index(string searchTitle=null, string searchAuthor = null, string searchFormat = null, int page = 1)
+        public IActionResult Index(string searchTitle = null, string searchAuthor = null, string searchFormat = null, int page = 1)
         {
             var items = _libraryRepository.GetAllItems();
 
@@ -64,14 +98,14 @@ namespace Biblioteka1.Controllers
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                     TotalItems = _libraryRepository.GetAllItems().Count()
-                    
+
                 }
             };
 
             return View(itemVM);
         }
 
-        public IActionResult Details (int id)
+        public IActionResult Details(int id)
         {
             var item = _libraryRepository.GetItemById(id);
             if (item == null)
@@ -88,15 +122,18 @@ namespace Biblioteka1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create (LibraryItem item)
+        public async Task<IActionResult> Create(LibraryItem item)
         {
             bool uploadSuccess;
 
             IFormFile file = HttpContext.Request.Form.Files.FirstOrDefault();
 
-            using (var stream = file.OpenReadStream())
+            if (file != null)
             {
-                uploadSuccess = await UploadToBlob(file.FileName, item, null, stream);
+                using (var stream = file.OpenReadStream())
+                {
+                    uploadSuccess = await UploadToBlob(file.FileName, item, null, stream);
+                }
             }
 
             if (ModelState.IsValid)
@@ -119,15 +156,19 @@ namespace Biblioteka1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit (LibraryItem item)
+        public async Task<IActionResult> Edit(LibraryItem item)
         {
             bool uploadSuccess;
 
             IFormFile file = HttpContext.Request.Form.Files.FirstOrDefault();
 
-            using (var stream = file.OpenReadStream())
+            if (file != null)
             {
-                uploadSuccess = await UploadToBlob(file.FileName, item, null, stream);
+                using (var stream = file.OpenReadStream())
+                {
+                    uploadSuccess = await UploadToBlob(file.FileName, item, null, stream);
+                }
+
             }
 
             if (ModelState.IsValid)
@@ -136,80 +177,11 @@ namespace Biblioteka1.Controllers
             }
             else
             {
-                return View(item);  
+                return View(item);
             }
 
             return RedirectToAction(nameof(Index));
         }
-
-        public async Task<bool> UploadToBlob(string filename, LibraryItem item, byte[] imageBuffer = null, Stream stream = null)
-        {
-            CloudStorageAccount storageAccount = null;
-            CloudBlobContainer cloudBlobContainer = null;
-            string storageConnectionString = "UseDevelopmentStorage=true;";
-
-            // Check whether the connection string can be parsed.
-            if (CloudStorageAccount.TryParse(storageConnectionString, out storageAccount))
-            {
-                try
-                {
-                    // Create the CloudBlobClient that represents the Blob storage endpoint for the storage account.
-                    CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
-
-                    // Create a container called 'uploadblob' and append a GUID value to it to make the name unique. 
-                    cloudBlobContainer = cloudBlobClient.GetContainerReference("uploadblob" + Guid.NewGuid().ToString());
-                    await cloudBlobContainer.CreateAsync();
-
-                    // Set the permissions so the blobs are public. 
-                    BlobContainerPermissions permissions = new BlobContainerPermissions
-                    {
-                        PublicAccess = BlobContainerPublicAccessType.Blob
-                    };
-                    await cloudBlobContainer.SetPermissionsAsync(permissions);
-
-                    // Get a reference to the blob address, then upload the file to the blob.
-                    CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(filename);
-
-                    if (imageBuffer != null)
-                    {
-                        // OPTION A: use imageBuffer (converted from memory stream)
-                        await cloudBlockBlob.UploadFromByteArrayAsync(imageBuffer, 0, imageBuffer.Length);
-                    }
-                    else if (stream != null)
-                    {
-                        // OPTION B: pass in memory stream directly
-                        await cloudBlockBlob.UploadFromStreamAsync(stream);
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                    string address = cloudBlockBlob.Uri.ToString();
-                    item.CoverString = address;
-
-                    return true;
-                }
-                catch (StorageException ex)
-                {
-                    return false;
-                }
-                finally
-                {
-                    // OPTIONAL: Clean up resources, e.g. blob container
-                    //if (cloudBlobContainer != null)
-                    //{
-                    //    await cloudBlobContainer.DeleteIfExistsAsync();
-                    //}
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
 
         public IActionResult Delete(int id)
         {
@@ -226,8 +198,8 @@ namespace Biblioteka1.Controllers
         {
             var item = _libraryRepository.GetItemById(id);
 
-                _libraryRepository.RemoveItem(item);
-                return RedirectToAction(nameof(Index));
+            _libraryRepository.RemoveItem(item);
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult CheckOut(int id)
@@ -242,19 +214,23 @@ namespace Biblioteka1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CheckOut(LibraryItem item, [FromServices] UserManager<IdentityUser> _userManager)
+        public IActionResult CheckOut(int id, string checkedOutTo, [FromServices] UserManager<IdentityUser> _userManager)
         {
-            if (ModelState.IsValid)
+            var item = _libraryRepository.GetItemById(id);
+
+            if (item != null)
             {
+
+                item.CheckedOutTo = checkedOutTo;
+                item.CheckedOut = true;
+                item.CheckedOutBy = _userManager.GetUserName(HttpContext.User);
+                item.CheckedOutDate = DateTime.Today.ToString();
 
                 if (item.CheckedOutTo == null)
                 {
-                    ModelState.AddModelError(string.Empty, "CHecked out to name must be added.");
+                    ModelState.AddModelError(string.Empty, "Checked out to name must be added.");
                     return View(item);
                 }
-                item.CheckedOut = true;
-                item.CheckedOutBy = _userManager.GetUserName(HttpContext.User);
-                item.CheckedOutDate = DateTime.Today.ToString(); 
 
                 _libraryRepository.EditItem(item);
 
@@ -263,6 +239,7 @@ namespace Biblioteka1.Controllers
             return View(item);
         }
 
+        [HttpGet]
         public IActionResult CheckIn(int id)
         {
             var item = _libraryRepository.GetItemById(id);
@@ -275,10 +252,13 @@ namespace Biblioteka1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CheckIn(LibraryItem item)
+        public IActionResult CheckIn(int id, bool CheckedOut)
         {
-            if (ModelState.IsValid)
+            var item = _libraryRepository.GetItemById(id);
+
+            if (item != null)
             {
+
                 item.CheckedOut = false;
                 item.CheckedOutBy = null;
                 item.CheckedOutTo = null;
@@ -288,8 +268,110 @@ namespace Biblioteka1.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+
             return View(item);
         }
 
+        public async Task<bool> UploadToBlob(string filename, LibraryItem item, byte[] imageBuffer = null, Stream stream = null)
+        {
+            CloudStorageAccount storageAccount = null;
+            CloudBlobContainer cloudBlobContainer = null;
+            string storageConnectionString = "UseDevelopmentStorage=true;";
+
+            if (CloudStorageAccount.TryParse(storageConnectionString, out storageAccount))
+            {
+                try
+                {
+                    CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
+                    cloudBlobContainer = cloudBlobClient.GetContainerReference("uploadblob" + Guid.NewGuid().ToString());
+                    await cloudBlobContainer.CreateAsync();
+
+                    BlobContainerPermissions permissions = new BlobContainerPermissions
+                    {
+                        PublicAccess = BlobContainerPublicAccessType.Blob
+                    };
+                    await cloudBlobContainer.SetPermissionsAsync(permissions);
+
+                    CloudBlockBlob cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(filename);
+
+                    if (imageBuffer != null)
+                    {
+                        await cloudBlockBlob.UploadFromByteArrayAsync(imageBuffer, 0, imageBuffer.Length);
+                    }
+                    else if (stream != null)
+                    {
+                        await cloudBlockBlob.UploadFromStreamAsync(stream);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    string address = cloudBlockBlob.Uri.ToString();
+                    item.CoverString = address;
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task MakeRequest()
+        {
+
+            var client = new HttpClient();
+            var queryString = HttpUtility.ParseQueryString(string.Empty);
+
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "18daa975a1de4b65b7a7204a5248b81f"); //valid 03/02/2019
+
+            queryString["mode"] = "Printed";
+            var uri = "https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/recognizeText?" + queryString;
+
+            HttpResponseMessage response;
+            byte[] byteData = GetImageAsByteArray(ImagePath);
+            byte[] GetImageAsByteArray(string imageFilePath)
+            {
+                using (FileStream fileStream =
+                    new FileStream(imageFilePath, FileMode.Open, FileAccess.Read))
+                {
+                    BinaryReader binaryReader = new BinaryReader(fileStream);
+                    return binaryReader.ReadBytes((int)fileStream.Length);
+                }
+            }
+
+            using (var content = new ByteArrayContent(byteData))
+            {
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                response = await client.PostAsync(uri, content);
+
+                IEnumerable<string> str = response.Headers.GetValues("Operation-Location");
+
+                foreach (var item in str)
+                {
+                    string responseContent;
+                    do
+                    {
+                        HttpResponseMessage message = await client.GetAsync(item);
+                        responseContent = await message.Content.ReadAsStringAsync();
+                        Thread.Sleep(500);
+                    }
+                    while (responseContent == "{\"status\":\"Running\"}");
+                    Rootobject @object = Newtonsoft.Json.JsonConvert.DeserializeObject<Rootobject>(responseContent);
+
+                    foreach (Line _line in @object.RecognitionResult.Lines)
+                    {
+                        { result.Add(_line.Text); }
+                    }
+
+                }
+            }
+        }
     }
 }

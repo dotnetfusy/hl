@@ -1,6 +1,7 @@
 ﻿@model LibraryItem
 
 <h2>Details</h2>
+<hr />
 <div class="row">
     <div class="well">
         <div class="row">
@@ -8,21 +9,22 @@
                 <div class="col-md-4">
                     <img class="img-fluid img-thumbnail" src="@Model.CoverString" />
                 </div>
-                <div class="col-md-4">
-                    <h4>@Model.Title - @Model.Author</h4>
-                    <h4>@Model.Format</h4>
-                    <h4>@Model.Year</h4>
+                <div class="col-md-7  col-md-offset-1">
+                    <h4><b>Title and Author:</b> @Model.Title - @Model.Author</h4>
+                    <h4><b>Item Format:</b> @Model.Format</h4>
+                    <h4><b>Year:</b> @Model.Year</h4>
                     <div class="form-check">
                         <input asp-for="CheckedOut" type="checkbox" class="form-check-input" id="CheckedOut" disabled>
                         <label class="form-check-label" for="exampleCheck1">Checked out</label>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <h3 class="pull-right">
+
+            <div class="col-md-2 pull-right">
+                <div class="pull-right">
                     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
-                    <a asp-action="Index" class="btn btn-success">Return</a>
-                </h3>
+                    <a asp-action="Index" class="btn btn-danger">Return</a>
+                </div>
             </div>
         </div>
     </div>

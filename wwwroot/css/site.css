@@ -1,37 +1,125 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+padding-top: 50px;
+padding-bottom: 20px;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+padding-left: 15px;
+padding-right: 15px;
 }
 
 /* Carousel */
 .carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+font-size: 20px;
+line-height: 1.4;
 }
 
 /* QR code generator */
 #qrCode {
-    margin: 15px;
+margin: 15px;
 }
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+/* Hide captions */
+.carousel-caption {
+display: none;
+}
+}
+
+.navbar-nav > .active a {
+color: aqua;
+}
+
+table th, table td {
+text-align: center;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding-left: 0;
+}
+
+h1 {
+font-size: 23px;
+}
+
+h2 {
+font-size: 17px;
+}
+
+p {
+font-size: 15px;
+}
+
+a {
+text-decoration: none;
+font-size: 15px;
+}
+
+a:hover {
+display: inline-block;
+vertical-align: middle;
+-webkit-transform: perspective(1px) translateZ(0);
+transform: perspective(1px) translateZ(0);
+box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+position: relative;
+-webkit-transition-property: color;
+transition-property: color;
+-webkit-transition-duration: 0.5s;
+transition-duration: 0.5s;
+text-decoration: none;
+}
+
+h1, h2, p, a, span {
+color: #777;
+}
+
+.btn.btn-success {
+color: #fff;
+background-color: #5cb85c;
+border-color: #5cb85c;
+}
+
+.btn.btn-success.focus,
+.btn.btn-success:focus {
+color: #fff;
+background-color: #5cb85c;
+border-color: #5cb85c;
+outline: none;
+box-shadow: none;
+}
+
+.btn.btn-success:hover {
+color: #fff;
+background-color: #5cb85c;
+border-color: #5cb85c;
+outline: none;
+box-shadow: none;
+}
+
+.btn.btn-success.active,
+.btn.btn-success:active {
+color: #fff;
+background-color: #5cb85c;
+border-color: #5cb85c;
+outline: none;
+}
+
+.btn.btn-success.active.focus,
+.btn.btn-success.active:focus,
+.btn.btn-success.active:hover,
+.btn.btn-success:active.focus,
+.btn.btn-success:active:focus,
+.btn.btn-success:active:hover {
+color: #fff;
+background-color: #5cb85c;
+border-color: #5cb85c;
+outline: none;
+box-shadow: none;
 }
