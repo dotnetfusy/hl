@@ -1,15 +1,15 @@
 ﻿@model RegisterVM
 <h2>
-    Please register!
+    Register Form
 </h2>
 <hr />
 
 <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
-    <div asp-validation-summary="All" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="container">
         <div class="form-group">
             <div class="col-md-4">
-                <input asp-for="UserName" placeholder="Username" class="form-control" />
+                <input asp-for="UserName" placeholder="Email" class="form-control" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
         </div>

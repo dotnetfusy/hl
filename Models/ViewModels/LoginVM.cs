@@ -9,7 +9,8 @@ namespace Biblioteka1.Models.ViewModels
     public class LoginVM
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "Email")]
+        [EmailAddress]
         public string UserName { get; set; }
         [Required]
         [Display(Name = "Password")]

@@ -13015,11 +13015,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\janus\\Desktop\\hl-549350096b777f2eb0fdd1cdb4f39ebada6d9bbc\\Biblioteka1.csproj",
+      "projectUniqueName": "Z:\\source\\repos\\hl\\Biblioteka1.csproj",
       "projectName": "Biblioteka1",
-      "projectPath": "C:\\Users\\janus\\Desktop\\hl-549350096b777f2eb0fdd1cdb4f39ebada6d9bbc\\Biblioteka1.csproj",
+      "projectPath": "Z:\\source\\repos\\hl\\Biblioteka1.csproj",
       "packagesPath": "C:\\Users\\janus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\janus\\Desktop\\hl-549350096b777f2eb0fdd1cdb4f39ebada6d9bbc\\obj\\",
+      "outputPath": "Z:\\source\\repos\\hl\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
