@@ -1,9 +1,9 @@
-Repozytorium zawiera pracê zaliczeniow¹ dla studiów podyplomowych:
+Repozytorium zawiera pracÄ™ zaliczeniowÄ… dla studiÃ³w podyplomowych:
 'Programowanie na platformie .NET'.
 
 Przedmiot: 'Aplikacje internetowe .NET'
 
 ------------------------------
-Aplikacja do dzia³ania wymaga:
+Aplikacja do dziaÅ‚ania wymaga:
 * AzureStorageEmulator
 * IIS Express
