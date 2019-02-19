@@ -329,7 +329,7 @@ namespace Biblioteka1.Controllers
             var client = new HttpClient();
             var queryString = HttpUtility.ParseQueryString(string.Empty);
 
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "18daa975a1de4b65b7a7204a5248b81f"); //valid 03/02/2019
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "a34bcf6dca204e2caf6511f264313f40"); //valid 24/02/2019
 
             queryString["mode"] = "Printed";
             var uri = "https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/recognizeText?" + queryString;
